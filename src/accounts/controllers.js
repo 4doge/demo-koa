@@ -1,7 +1,10 @@
 const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
+const fs = require('fs');
 const User = require('./models/user');
+const sendEmail = require('../utils/sendEmail');
+const uploadS3 = require('../utils/uploadS3');
 
 exports.signIn = async (ctx, next) => {
   await passport.authenticate('local', (err, user) => {
@@ -40,4 +43,32 @@ exports.signUp = async (ctx) => {
 
 exports.profile = async (ctx) => {
   ctx.body = 'SUPER SECRET CONTENT ONLY FOR USERS!';
+};
+
+exports.testEmail = async (ctx) => {
+  const attachments = [
+    {
+      content: Buffer.from(fs.readFileSync('cage.jpg')).toString('base64'),
+      filename: 'test.jpg',
+    },
+  ];
+  await sendEmail(
+    'antonboksha@gmail.com',
+    'notifications@example.com',
+    'Hello world!',
+    '<p>test data</p>',
+    attachments,
+  );
+  ctx.body = {
+    success: true,
+  };
+};
+
+exports.updateUserPhoto = async (ctx) => {
+  const photo = await uploadS3(config.get('aws').userPhotoFolder, ctx.request.files.photo);
+  // eslint-disable-next-line no-underscore-dangle
+  await User.findByIdAndUpdate(ctx.state.user._id, { photo });
+  ctx.body = {
+    photo,
+  };
 };

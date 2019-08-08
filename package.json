@@ -21,6 +21,8 @@
     "pow-mongodb-fixtures": "^0.14.0"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "aws-sdk": "^2.505.0",
     "config": "^3.2.0",
     "jwt-simple": "^0.5.6",
     "koa": "^2.7.0",
