@@ -2,6 +2,9 @@ const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
 const fs = require('fs');
+const path = require('path');
+const wkhtmltopdf = require('wkhtmltopdf');
+const nunjucks = require('nunjucks');
 const User = require('./models/user');
 const sendEmail = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
@@ -16,7 +19,7 @@ exports.signIn = async (ctx, next) => {
       ctx.body = {
         token: jwt.encode(payload, config.get('jwtSecret')),
         user: {
-          fullname: user.fullName,
+          fullName: user.fullName,
           email: user.email,
           photo: user.photo,
         },
@@ -71,4 +74,16 @@ exports.updateUserPhoto = async (ctx) => {
   ctx.body = {
     photo,
   };
+};
+
+exports.generatePdf = async (ctx) => {
+  const html = await nunjucks.render(path.join(__dirname, '../templates/ticket.html'), {
+    fullName: 'Vasya Pupkin',
+  });
+  ctx.set('Content-Type', 'application/pdf');
+  // ctx.attachment('example.pdf');
+  ctx.body = await wkhtmltopdf(html);
+  // ctx.body = {
+  //   success: true,
+  // };
 };

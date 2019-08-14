@@ -21,6 +21,7 @@
     "pow-mongodb-fixtures": "^0.14.0"
   },
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "@sendgrid/mail": "^6.4.0",
     "aws-sdk": "^2.505.0",
     "config": "^3.2.0",
@@ -30,10 +31,14 @@
     "koa-context-validator": "^0.4.1",
     "koa-passport": "^4.1.3",
     "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa2-swagger-ui": "^2.15.1",
     "mongoose": "^5.6.5",
     "mongoose-beautiful-unique-validation": "^7.1.1",
+    "nunjucks": "^3.2.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "wkhtmltopdf": "^0.3.4"
   },
   "engines": {
     "node": "11.15.0",

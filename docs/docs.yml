@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: My Fixer API docs
+  description: Made with ❤️️️️
+  version: 0.0.1
+  host: localhost:3000
+tags:
+  - name: Accounts
+paths:
+  /accounts/sign-in:
+    $ref: methods/accounts/signIn.yml
+servers:
+  - url: /api
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization

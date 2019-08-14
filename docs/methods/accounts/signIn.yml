@@ -1,0 +1,51 @@
+post:
+  summary: Sign In
+  description: Sign iin user and return user object with JWT token
+  tags:
+    - Accounts
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+  responses:
+    "200":
+      content:
+        application/json:
+          description: User object with JWT token
+          schema:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  fullName:
+                    type: string
+                    description: Full name of user
+                  email:
+                    type: string
+                    description: Email of user
+                  photo:
+                    type: string
+                    description: URL for user photo
+              token:
+                type: string
+                description: JWT token for this user
+    "404":
+      content:
+        application/json:
+          description: Message about user status
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    default:
+      $ref: "../../models/error.yml"

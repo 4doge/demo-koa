@@ -7,7 +7,7 @@ const s3 = new AWS.S3();
 
 module.exports = (folder, file) => new Promise((resolve, reject) => {
   const timestamp = +new Date();
-  const filename = `${folder}/${user._id}/${timestamp}${path.extname(file.name)}`;
+  const filename = `${folder}/${timestamp}${path.extname(file.name)}`;
 
   s3.upload(
     {

@@ -2,14 +2,30 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-body');
 const config = require('config');
+const cors = require('@koa/cors');
+const koaSwagger = require('koa2-swagger-ui');
+const serve = require('koa-static');
 const passport = require('./src/libs/passport/index');
 require('./src/libs/mongoose');
 
 passport.initialize();
 
 const app = new Koa();
-const router = new Router();
+const router = new Router({
+  prefix: '/api',
+});
 
+app.use(cors());
+app.use(serve('docs'));
+app.use(
+  koaSwagger({
+    routePrefix: '/docs',
+    hideTopbar: true,
+    swaggerOptions: {
+      url: 'http://localhost:3000/docs.yml',
+    },
+  }),
+);
 app.use(bodyParser({
   multipart: true,
 }));
@@ -17,7 +33,7 @@ app.use(async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     // const errors = [];
     // Object.keys(err.errors).forEach((key) => {
     //   errors.push(err.errors[key].message);
