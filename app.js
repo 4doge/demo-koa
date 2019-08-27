@@ -1,12 +1,11 @@
 const Koa = require('koa');
-const Router = require('koa-router')
-const bodyParser = require("koa-body");
+const Router = require('koa-router');
+const bodyParser = require('koa-body');
 const config = require('config');
 const cors = require('@koa/cors');
-const koaSwagger =  require('koa2-swagger-ui');
+const koaSwagger = require('koa2-swagger-ui');
+const serve = require('koa-static');
 const passport = require('./src/libs/passport/index');
-var serve = require('koa-static');
-
 require('./src/libs/mongoose');
 
 passport.initialize();
