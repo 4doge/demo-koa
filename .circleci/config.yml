@@ -17,6 +17,6 @@ jobs:
           paths:
             - 'node_modules'
       - run:
-          name: Say my name
+          name: Lint code
           command: |
-            echo "Hello, Heisenberg!"
+            npm run lint
