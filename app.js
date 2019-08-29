@@ -49,4 +49,4 @@ router.use('/accounts', require('./src/accounts/routes').routes());
 
 app.use(router.routes());
 
-app.listen(config.get('port'));
+module.exports = app.listen(config.get('port'));

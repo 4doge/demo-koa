@@ -10,7 +10,7 @@ router.post('/sign-in', ctrl.signIn);
 router.get('/sign-up', ctrl.signUp);
 router.get('/profile', passport.authenticate('jwt', { session: false }), ctrl.profile);
 router.get('/email', ctrl.testEmail);
-router.put('/photo', passport.authenticate('jwt', { session: false }), ctrl.updateUserPhoto);
+router.put('/photo', ctrl.updateUserPhoto);
 router.get('/pdf', ctrl.generatePdf);
 
 module.exports = router;

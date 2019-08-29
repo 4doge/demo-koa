@@ -9,15 +9,21 @@
     "lint:fix": "eslint ./src/ app.js --fix",
     "fixtures": "node ./src/fixtures/load.js",
     "serve": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./src/tests/*.test.js --exit",
+    "coverage": "nyc npm run test",
+    "coverage-report": "nyc report --reporter=html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
     "pow-mongodb-fixtures": "^0.14.0"
   },
   "dependencies": {
