@@ -1,6 +1,5 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const fs = require('fs');
 const app = require('../../app');
 
 chai.should();
