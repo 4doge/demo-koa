@@ -40,16 +40,16 @@ describe('Accounts', () => {
         done();
       });
   });
-  it('Should update user photo and return new url', (done) => {
-    chai.request(app)
-      .put('/api/accounts/photo')
-      .attach('photo', fs.readFileSync('cage.jpg'), 'cage.jpg')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('photo');
-        done();
-      });
-  });
+  // it('Should update user photo and return new url', (done) => {
+  //   chai.request(app)
+  //     .put('/api/accounts/photo')
+  //     .attach('photo', fs.readFileSync('cage.jpg'), 'cage.jpg')
+  //     .end((err, res) => {
+  //       res.should.have.status(200);
+  //       res.body.should.have.property('photo');
+  //       done();
+  //     });
+  // });
   it('Should return profile data', (done) => {
     chai.request(app)
       .get('/api/accounts/profile')
