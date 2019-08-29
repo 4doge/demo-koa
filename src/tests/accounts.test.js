@@ -20,6 +20,7 @@ describe('Accounts', () => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['fullName', 'email', 'photo']);
         res.body.should.have.property('token');
+        // eslint-disable-next-line prefer-destructuring
         token = res.body.token;
         done();
       });

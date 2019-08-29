@@ -68,10 +68,9 @@ exports.testEmail = async (ctx) => {
 };
 
 exports.updateUserPhoto = async (ctx) => {
-  // console.log(ctx.request.files.photo);
-  // const photo = await uploadS3(config.get('aws').userPhotoFolder, ctx.request.files.photo);
+  const photo = await uploadS3(config.get('aws').userPhotoFolder, ctx.request.files.photo);
   // eslint-disable-next-line no-underscore-dangle
-  // await User.findByIdAndUpdate(ctx.state.user._id, { photo });
+  await User.findByIdAndUpdate(ctx.state.user._id, { photo });
   ctx.body = {
     photo: 'new url',
   };
